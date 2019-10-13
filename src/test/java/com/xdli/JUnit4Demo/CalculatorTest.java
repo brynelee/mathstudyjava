@@ -1,6 +1,8 @@
-package JUnit4Demo;
+package com.xdli.JUnit4Demo;
 
 import org.junit.*;
+
+import junit.framework.TestCase;
 
 // 单元测试类
 public class CalculatorTest{
@@ -56,7 +58,9 @@ public class CalculatorTest{
     @Test(timeout = 1000)
     public void testSquareRoot(){
         System.out.println("测试平方根");
-        cal.squareRoot(4);
+        double sqrt = cal.squareRoot(4);
+        System.out.println("the square root of " + 4 + " is: " + sqrt);
+        TestCase.assertEquals(2.0, sqrt);
     }
 
     // 异常测试

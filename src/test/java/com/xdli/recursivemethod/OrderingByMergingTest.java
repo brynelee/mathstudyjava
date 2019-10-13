@@ -1,4 +1,4 @@
-package recursivemethod;
+package com.xdli.recursivemethod;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package inductivemethod;
+package com.xdli.inductivemethod;
 
 class Result {
     public long wheatNum = 0;  // 当前格的麦粒数

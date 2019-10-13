@@ -1,4 +1,4 @@
-package JUnit4Demo;
+package com.xdli.JUnit4Demo;
 
 // Calculator.java
 public class Calculator {
@@ -17,9 +17,16 @@ public class Calculator {
     }
 
     // Bug: 死循环
-    public void squareRoot(int a){
+    public double squareRoot(double a){
+ 
+    /*  
+        //originally programmed for the relative testcase to fail by timing out     
         for(; ;)
             ;
+    */
+
+        return Math.sqrt(a);
+
     }
 
     public int multiply(int a, int b){

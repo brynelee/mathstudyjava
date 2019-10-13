@@ -1,4 +1,4 @@
-package recursivemethod;
+package com.xdli.recursivemethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package iterationmethodology;
+package com.xdli.iterationMethodology;
 
 public class WheatCalc {
     /**

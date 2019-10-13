@@ -1,4 +1,4 @@
-package recursivemethod;
+package com.xdli.recursivemethod;
 
 public class CharSequence {
 

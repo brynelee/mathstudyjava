@@ -1,4 +1,4 @@
-package JUnit4Demo;
+package com.xdli.JUnit4Demo;
 
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;

@@ -1,4 +1,4 @@
-package iterationMethodology;
+package com.xdli.iterationMethodology;
 
 import java.util.Arrays;
 

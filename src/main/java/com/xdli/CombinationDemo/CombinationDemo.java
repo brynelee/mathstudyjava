@@ -1,4 +1,4 @@
-package CombinationDemo;
+package com.xdli.CombinationDemo;
 
 import java.util.ArrayList;
 import java.util.Arrays;

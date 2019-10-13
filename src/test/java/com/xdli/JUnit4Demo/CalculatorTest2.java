@@ -1,4 +1,4 @@
-package JUnit4Demo;
+package com.xdli.JUnit4Demo;
 
 /*
 需求:如果SquareRoot()方法,需要使用不同的参数,测试多次,需要提供多个@Test方法;
@@ -11,7 +11,7 @@ JUnit4创建不同参数测试只需要五个步骤:
         通过@RunWith注释,指定测试用例和Parameterized类一起运行;
 */
 
-import org.junit.Assert;
+import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -46,7 +46,7 @@ public class CalculatorTest2 {
     @Test
     public void squareTest(){
         int temp = cal.square(param);
-        Assert.assertEquals(result, temp);
+        TestCase.assertEquals(result, temp);
     }
 
 }
