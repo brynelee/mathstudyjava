@@ -9,6 +9,12 @@
 
 # vscode
 .vscode/
+.classpath
+.project
+.settings/
+
+# maven
+target/
 
 # BlueJ files
 *.ctxt
