@@ -53,7 +53,11 @@ public class DemoTree {
         return result;
     }
 
-    // 使用栈来实现深度优先搜索
+
+    /**
+     * 使用栈来实现深度优先搜索
+     * 实现的过程通过Stack来实现，因为是后进先出，所以可以实现子节点先入栈，然后弹出第一个子节点，继续将下一层次的子节点入栈。通过后进先出，优先处理后入栈的子节点（Deep First）
+     */
     public void dfsByStack(TreeNode root) {
 
         Stack<TreeNode> stack = new Stack<TreeNode>(); 
