@@ -1,6 +1,6 @@
-package com.xdli.linearprogramming;
+package com.xdli.dynamicprogramming;
 
-public class LinearProgDemo {
+public class DynamicProgDemoStrDist {
 	
 	/**
     * @Description:	使用状态转移方程，计算两个字符串之间的编辑距离
@@ -53,7 +53,7 @@ public class LinearProgDemo {
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        System.out.println(LinearProgDemo.getStrDistance("mouket", "mouose"));
+        System.out.println(DynamicProgDemoStrDist.getStrDistance("mouket", "mouose"));
       
     }
 
