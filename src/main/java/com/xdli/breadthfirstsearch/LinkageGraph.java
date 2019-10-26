@@ -16,17 +16,22 @@ public class LinkageGraph {
         relationNum = relation_num;
         userNodes = new Node[user_num];
 
-        Random rand = new Random();
-
         // 生成所有表示用户的结点
         for (int i = 0; i < user_num; i++) {
             userNodes[i] = new Node(i);
         }
 
+        initializeRelShips();
+
+    }
+
+    protected void initializeRelShips(){
+        Random rand = new Random();
+
         // 生成所有表示好友关系的边
-        for (int i = 0; i < relation_num; i++) {
-            int friend_a_id = rand.nextInt(user_num);
-            int friend_b_id = rand.nextInt(user_num);
+        for (int i = 0; i < relationNum; i++) {
+            int friend_a_id = rand.nextInt(userNum);
+            int friend_b_id = rand.nextInt(userNum);
             if (friend_a_id == friend_b_id) continue;
             // 自己不能是自己的好友。如果生成的两个好友 id 相同，跳过
             Node friend_a = userNodes[friend_a_id];

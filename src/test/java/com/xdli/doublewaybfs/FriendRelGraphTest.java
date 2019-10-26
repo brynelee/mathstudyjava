@@ -33,7 +33,8 @@ public void testBi_bfs() throws Exception {
 
     int user_num = 50;
     int rel_num = 100;
-    FriendRelGraph lg = new FriendRelGraph(user_num, rel_num);
+    String filePath = "/Users/xiaodong/Gitroot/mathstudyjava/output/friendrellist.csv";
+    FriendRelGraph lg = new FriendRelGraph(user_num, rel_num, filePath);
 
     int pairtimes = 4;
     for (int i = 0; i < pairtimes; i++){

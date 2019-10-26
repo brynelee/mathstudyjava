@@ -1,5 +1,10 @@
 package com.xdli.doublewaybfs;
 
+import java.io.*;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import org.apache.commons.csv.*;
+
 import java.util.*;
 
 public class FriendRelGraph {
@@ -8,33 +13,61 @@ public class FriendRelGraph {
     public int relationNum = 0;
     public DWNode[] userNodes = null;
 
-    public FriendRelGraph(int user_num, int relation_num) {
+    public FriendRelGraph(int user_num, int relation_num, String filepath) {
+
         userNum = user_num;
         relationNum = relation_num;
         userNodes = new DWNode[user_num];
-
-        Random rand = new Random();
 
         // 生成所有表示用户的结点
         for (int i = 0; i < user_num; i++) {
             userNodes[i] = new DWNode(i);
         }
 
-        // 生成所有表示好友关系的边
-        for (int i = 0; i < relation_num; i++) {
-            int friend_a_id = rand.nextInt(user_num);
-            int friend_b_id = rand.nextInt(user_num);
-            if (friend_a_id == friend_b_id) continue;
-            // 自己不能是自己的好友。如果生成的两个好友 id 相同，跳过
-            DWNode friend_a = userNodes[friend_a_id];
-            DWNode friend_b = userNodes[friend_b_id];
+        initializeRelShips(filepath);
+    }
 
-            friend_a.friends.add(friend_b_id);
-            friend_a.degrees.put(friend_b_id, 1);
-            friend_b.friends.add(friend_a_id);
-            friend_b.degrees.put(friend_a_id, 1);
-            System.out.println("Relationship added for user ID: " + friend_a_id + " and " + friend_b_id);
+    protected void initializeRelShips(String filePath) {
+
+        //CSV文件分隔符
+        final String NEW_LINE_SEPARATOR="\n";
+
+        try {
+
+            FileOutputStream fos = new FileOutputStream(filePath);
+            OutputStreamWriter osw = new OutputStreamWriter(fos, "utf-8");
+
+            CSVFormat csvFormat = CSVFormat.DEFAULT.withHeader("id_a", "id_b");
+            csvFormat.withRecordSeparator(NEW_LINE_SEPARATOR);
+
+            CSVPrinter csvPrinter = new CSVPrinter(osw, csvFormat);
+
+            Random rand = new Random();
+
+            // 生成所有表示好友关系的边
+            for (int i = 0; i < this.relationNum; i++) {
+                int friend_a_id = rand.nextInt(userNum);
+                int friend_b_id = rand.nextInt(userNum);
+                if (friend_a_id == friend_b_id) continue;
+                // 自己不能是自己的好友。如果生成的两个好友 id 相同，跳过
+                DWNode friend_a = userNodes[friend_a_id];
+                DWNode friend_b = userNodes[friend_b_id];
+
+                friend_a.friends.add(friend_b_id);
+                friend_a.degrees.put(friend_b_id, 1);
+                friend_b.friends.add(friend_a_id);
+                friend_b.degrees.put(friend_a_id, 1);
+                System.out.println("Relationship added for user ID: " + friend_a_id + " and " + friend_b_id);
+                csvPrinter.printRecord(new String[]{Integer.toString(friend_a_id), Integer.toString(friend_b_id)});
+            }
+
+            csvPrinter.flush();
+            csvPrinter.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 
 
