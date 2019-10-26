@@ -1,9 +1,6 @@
 package com.xdli.doublewaybfs;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 public class FriendRelGraph {
 
@@ -33,7 +30,9 @@ public class FriendRelGraph {
             DWNode friend_b = userNodes[friend_b_id];
 
             friend_a.friends.add(friend_b_id);
+            friend_a.degrees.put(friend_b_id, 1);
             friend_b.friends.add(friend_a_id);
+            friend_b.degrees.put(friend_a_id, 1);
             System.out.println("Relationship added for user ID: " + friend_a_id + " and " + friend_b_id);
         }
     }
@@ -84,10 +83,29 @@ public class FriendRelGraph {
 
     public static void getNextDegreeFriend(int user_id_a, DWNode[] userNodes, Queue<Integer> queue, HashSet<Integer> visited, int degree){
 
+        int size = queue.size();
+        HashMap<Integer, Integer> degrees = userNodes[user_id_a].degrees;
+
+        for (int i =0; i < size; i++){
+            int currentID = queue.poll();
+            for (int friend_id: userNodes[currentID].friends){
+                if (userNodes[friend_id] == null) continue;
+                if (visited.contains(friend_id)) continue;
+                queue.offer(friend_id);
+                visited.add(friend_id);	// 记录已经访问过的结点
+                degrees.put(friend_id, degree);
+                System.out.println(String.format("\t%d 度好友：%d",  userNodes[friend_id].degree, friend_id));
+            }
+
+        }
+
     }
 
-    public static Boolean hasOverlap(HashSet<Integer> visted_a, HashSet<Integer> visted_b){
+    public static Boolean hasOverlap(HashSet<Integer> visited_a, HashSet<Integer> visited_b){
 
+        for (int visited_a_id: visited_a){
+            if (visited_b.contains(visited_a_id)) return true;
+        }
         return false;
     }
 

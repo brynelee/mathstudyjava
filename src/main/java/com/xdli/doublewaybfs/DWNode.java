@@ -21,6 +21,4 @@ public class DWNode {
         degrees.put(id, 0);
     }
 
-
-
 }
