@@ -29,11 +29,11 @@ public class FriendRelGraph {
 
     protected void initializeRelShips(String filePath) {
 
-        //CSV文件分隔符
+        //CSV文件换行符
         final String NEW_LINE_SEPARATOR="\n";
 
         try {
-
+            //CSV文件生成
             FileOutputStream fos = new FileOutputStream(filePath);
             OutputStreamWriter osw = new OutputStreamWriter(fos, "utf-8");
 
@@ -116,11 +116,14 @@ public class FriendRelGraph {
 
     public static void getNextDegreeFriend(int user_id_a, DWNode[] userNodes, Queue<Integer> queue, HashSet<Integer> visited, int degree){
 
+        //计算当前queue中的节点数（当前degree的所有节点数）
         int size = queue.size();
         HashMap<Integer, Integer> degrees = userNodes[user_id_a].degrees;
 
+        //遍历当前level的节点
         for (int i =0; i < size; i++){
             int currentID = queue.poll();
+            //将当前level节点的子节点放入visited当中
             for (int friend_id: userNodes[currentID].friends){
                 if (userNodes[friend_id] == null) continue;
                 if (visited.contains(friend_id)) continue;
@@ -129,9 +132,7 @@ public class FriendRelGraph {
                 degrees.put(friend_id, degree);
                 System.out.println(String.format("\t%d 度好友：%d",  userNodes[friend_id].degree, friend_id));
             }
-
         }
-
     }
 
     public static Boolean hasOverlap(HashSet<Integer> visited_a, HashSet<Integer> visited_b){

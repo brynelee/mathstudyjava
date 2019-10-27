@@ -1,4 +1,4 @@
-package test.com.xdli.doublewaybfs; 
+package com.xdli.doublewaybfs; 
 
 import com.xdli.doublewaybfs.FriendRelGraph;
 import org.junit.Test;
@@ -31,15 +31,15 @@ public void after() throws Exception {
 public void testBi_bfs() throws Exception {
 
 
-    int user_num = 50;
-    int rel_num = 100;
+    int user_num = 20;
+    int rel_num = 30;
     String filePath = "/Users/xiaodong/Gitroot/mathstudyjava/output/friendrellist.csv";
     FriendRelGraph lg = new FriendRelGraph(user_num, rel_num, filePath);
 
     int pairtimes = 4;
     for (int i = 0; i < pairtimes; i++){
-        int distance = FriendRelGraph.bi_bfs(lg.userNodes, i, i+20);
-        System.out.print(String.format("User %d and User %d distance is %d", i, i + 20, distance ));
+        int distance = FriendRelGraph.bi_bfs(lg.userNodes, i, i+10);
+        System.out.print(String.format("User %d and User %d distance is %d", i, i + 10, distance ));
 
     }
 
